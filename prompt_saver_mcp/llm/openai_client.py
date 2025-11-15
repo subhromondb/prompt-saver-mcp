@@ -40,24 +40,36 @@ class OpenAIClient:
             # Format conversation for analysis
             conversation_text = self._format_conversation(conversation_messages)
 
-            system_prompt = """You are an expert at analyzing conversation threads and extracting reusable prompt patterns.
+            system_prompt = """You are an expert at analyzing conversation threads and extracting comprehensive, reusable prompt patterns.
 
 Your task is to:
 1. Categorize the conversation into one of these use cases: code-gen, text-gen, data-analysis, creative, general
-2. Create a concise summary of what the conversation accomplished
-3. Generate a universal, reusable prompt template in markdown format that captures the key patterns and steps
+2. Create a detailed summary of what the conversation accomplished
+3. Generate a comprehensive, reusable prompt template in markdown format that captures ALL the key patterns, steps, examples, and details
 
 The prompt template should be:
-- Universal and reusable (not specific to the exact conversation)
-- Well-structured with clear sections
-- Include placeholders for variable inputs
-- Capture the essential problem-solving approach
+- COMPREHENSIVE and DETAILED - include specific examples, code snippets, file paths, commands, and concrete patterns from the conversation
+- Well-structured with clear sections and subsections
+- Include specific examples alongside placeholders for variable inputs
+- Preserve important details like exact file paths, SQL queries, specific commands, error messages, and solutions
+- Capture the complete problem-solving approach with all nuances
+- Include a detailed "Overview" section at the beginning explaining the context and what this prompt helps accomplish
+- Be VERBOSE - include all relevant details that would help someone replicate the success
+
+IMPORTANT: Do NOT oversimplify or make it too generic. Include:
+- Specific code examples from the conversation
+- Exact file paths mentioned
+- Complete SQL queries or commands
+- Detailed step-by-step procedures
+- Common pitfalls and solutions
+- Validation checklists
+- Any specific technical details discussed
 
 Return your response as a JSON object with these keys:
 - use_case: one of the use case categories
-- summary: a brief summary (2-3 sentences)
-- prompt_template: the markdown-formatted prompt template
-- history: a summary of the steps taken and end result (2-3 sentences)
+- summary: a detailed summary (can be multiple sentences, include key details)
+- prompt_template: the comprehensive markdown-formatted prompt template with overview, examples, and details
+- history: a detailed summary of the steps taken and end result (include specific details)
 """
 
             user_prompt = f"""Analyze this conversation thread:
@@ -117,10 +129,14 @@ Extract the reusable prompt pattern and return as JSON."""
             system_prompt = """You are an expert at improving prompts based on feedback.
 
 Your task is to take the current prompt and user feedback, then generate an improved version that:
-- Addresses the feedback points
-- Maintains the core structure and approach
-- Enhances clarity and effectiveness
-- Remains universal and reusable
+- Addresses the feedback points comprehensively
+- Maintains or enhances the detailed structure and approach
+- Enhances clarity and effectiveness with MORE detail, not less
+- Preserves or adds specific examples, code snippets, file paths, and concrete patterns
+- Remains reusable but highly detailed and informative
+
+IMPORTANT: When user asks for more details, examples, or verbosity - ADD MORE, don't simplify.
+Include specific examples, code snippets, exact commands, and detailed explanations.
 
 Return only the improved prompt template in markdown format, without any additional commentary."""
 
