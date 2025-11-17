@@ -75,7 +75,7 @@ Uses AI to automatically improve a prompt based on user feedback.
 - [MCP-Only Workflow](docs/MCP_ONLY_WORKFLOW.md) - Using MCP tools directly
 
 **Quick Start for Teams:**
-1. Clone the repository
+1. Install from GitHub: `pip install git+https://github.com/YOUR-ORG/prompt-saver-mcp.git`
 2. Copy `mcp.json.template` to `~/.cursor/mcp.json` and fill in your values
 3. Follow [TEAM_SETUP_CHECKLIST.md](docs/TEAM_SETUP_CHECKLIST.md)
 
