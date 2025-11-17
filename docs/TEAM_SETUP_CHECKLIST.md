@@ -33,9 +33,19 @@ pip install -e .
 
 ## ✅ Step 3: Get API Keys
 
-- [ ] **Voyage AI API Key** - Get from [voyageai.com](https://www.voyageai.com/)
-- [ ] **OpenAI API Key** - Get from [platform.openai.com](https://platform.openai.com/api-keys)
-- [ ] **MongoDB Connection String** - Get from team lead or set up your own
+**Choose one:**
+
+**Option A: Shared Keys (Small Teams)**
+- [ ] Get **shared API keys** from your team lead:
+  - [ ] Voyage AI API key (shared)
+  - [ ] OpenAI API key (shared)
+  - [ ] MongoDB Connection String (shared)
+
+**Option B: Individual Keys (Larger Teams)**
+- [ ] Get your **own API keys**:
+  - [ ] Voyage AI API Key - [voyageai.com](https://www.voyageai.com/)
+  - [ ] OpenAI API Key - [platform.openai.com](https://platform.openai.com/api-keys)
+  - [ ] MongoDB Connection String - Get from team lead or set up your own
 
 ---
 
@@ -80,9 +90,9 @@ python -c "import sys; print(sys.executable)"
 **Replace:**
 - [ ] `YOUR_PYTHON_PATH_HERE` → Your Python path from Step 4
 - [ ] `YOUR_REPO_PATH_HERE` → Full path to `prompt-saver-mcp` directory (use twice)
-- [ ] `YOUR_MONGODB_URI_HERE` → MongoDB connection string
-- [ ] `YOUR_VOYAGE_KEY_HERE` → Voyage AI API key
-- [ ] `YOUR_OPENAI_KEY_HERE` → OpenAI API key
+- [ ] `YOUR_MONGODB_URI_HERE` → MongoDB connection string (shared or individual)
+- [ ] `YOUR_VOYAGE_KEY_HERE` → Voyage AI API key (shared from team lead OR your own)
+- [ ] `YOUR_OPENAI_KEY_HERE` → OpenAI API key (shared from team lead OR your own)
 
 ---
 

@@ -4,6 +4,51 @@ This guide will help your teammates set up the MCP Prompt Saver Server on their 
 
 ---
 
+## 👥 For Team Leads: Setting Up Shared API Keys
+
+If your team wants to use **shared API keys** (recommended for small teams), follow these steps:
+
+### 1. Get the API Keys
+
+**Voyage AI:**
+1. Go to [https://www.voyageai.com/](https://www.voyageai.com/)
+2. Sign up for an account (free tier available)
+3. Navigate to API keys section
+4. Copy your API key
+
+**OpenAI:**
+1. Go to [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. Sign up for an account (free credits available)
+3. Click "Create new secret key"
+4. Copy the key immediately (you won't see it again!)
+
+**MongoDB Atlas:**
+1. Set up a MongoDB Atlas cluster (free tier available)
+2. Create a database user
+3. Configure network access (allow from anywhere or specific IPs)
+4. Get the connection string
+5. Set up the vector search index (see Step 4 in main guide)
+
+### 2. Share Keys Securely
+
+**Recommended methods:**
+- ✅ **Password Manager** (1Password, LastPass, Bitwarden) - Create a shared vault/item
+- ✅ **Encrypted Team Chat** - Slack private channel, Signal group
+- ✅ **Secure Document** - Google Drive with limited access, encrypted note
+
+**What to share:**
+- Voyage AI API key
+- OpenAI API key
+- MongoDB connection string
+
+### 3. Tell Your Team
+
+Share this guide (`TEAM_SETUP.md`) with your team and let them know:
+- "We're using shared API keys - get them from [secure location]"
+- "Use Option A in Step 3 of the setup guide"
+
+---
+
 ## Prerequisites
 
 Before starting, make sure you have:
@@ -12,8 +57,8 @@ Before starting, make sure you have:
 - ✅ **Git** installed
 - ✅ Access to the **prompt-saver-mcp** repository (or clone it)
 - ✅ **MongoDB Atlas** credentials (shared team database or individual account)
-- ✅ **Voyage AI API key** (each teammate needs their own)
-- ✅ **OpenAI API key** (each teammate needs their own)
+- ✅ **Voyage AI API key** (shared from team lead OR your own)
+- ✅ **OpenAI API key** (shared from team lead OR your own)
 
 ---
 
@@ -48,26 +93,61 @@ This installs all required dependencies (`mcp`, `pymongo`, `voyageai`, `openai`,
 
 ## Step 3: Get Your API Keys
 
-### 3.1 Voyage AI API Key (Required - Individual)
+**Choose one approach based on your team size and preferences:**
 
-Each teammate needs their own Voyage AI API key:
+### Option A: Shared API Keys (Recommended for Small Teams)
 
-1. Go to [https://www.voyageai.com/](https://www.voyageai.com/)
-2. Sign up for a free account
-3. Navigate to your dashboard/API keys section
-4. Copy your API key
-5. **Save it** - you'll need it in Step 5
+**Best for:** Small teams (2-5 people), low usage, shared budget
 
-### 3.2 OpenAI API Key (Required - Individual)
+**Setup:**
+1. **One team member** (usually the team lead) gets the API keys:
+   - Voyage AI API key from [https://www.voyageai.com/](https://www.voyageai.com/)
+   - OpenAI API key from [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. **Share the keys securely** with teammates (see "Sharing Keys Securely" below)
+3. **All teammates use the same keys** in their `mcp.json` configuration
 
-Each teammate needs their own OpenAI API key:
+**Pros:**
+- ✅ Simpler setup - one person gets keys, shares with team
+- ✅ Shared cost/budget - easier to track team expenses
+- ✅ Less API key management overhead
 
-1. Go to [https://platform.openai.com/](https://platform.openai.com/)
-2. Sign up for an account (you'll get free credits)
-3. Go to API Keys: [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
-4. Click "Create new secret key"
-5. Copy the key immediately (you won't see it again!)
-6. **Save it** - you'll need it in Step 5
+**Cons:**
+- ⚠️ Shared API quota/rate limits - heavy usage by one person affects everyone
+- ⚠️ Security risk - if one person's machine is compromised, everyone is affected
+- ⚠️ Harder to track individual usage
+
+### Option B: Individual API Keys (Recommended for Larger Teams)
+
+**Best for:** Larger teams (5+ people), high usage, individual cost tracking
+
+**Setup:**
+1. **Each teammate** gets their own API keys:
+   - Voyage AI API key from [https://www.voyageai.com/](https://www.voyageai.com/)
+   - OpenAI API key from [https://platform.openai.com/api-keys](https://platform.openai.com/api-keys)
+2. **Each person uses their own keys** in their `mcp.json` configuration
+
+**Pros:**
+- ✅ Individual API quotas - no interference between teammates
+- ✅ Better security - compromised key only affects one person
+- ✅ Easier cost tracking per person
+
+**Cons:**
+- ⚠️ More setup work - each person needs to get their own keys
+- ⚠️ More API key management
+
+### Sharing Keys Securely (For Option A)
+
+**DO:**
+- ✅ Use a password manager (1Password, LastPass, Bitwarden)
+- ✅ Use encrypted team chat (Slack private channel, Signal)
+- ✅ Share via secure document (Google Drive with limited access)
+- ✅ Rotate keys periodically (every 3-6 months)
+
+**DON'T:**
+- ❌ Commit keys to Git repositories
+- ❌ Share via email or unencrypted channels
+- ❌ Post in public channels or documentation
+- ❌ Share screenshots of keys in public spaces
 
 ### 3.3 MongoDB Atlas (Shared or Individual)
 
@@ -209,9 +289,13 @@ cp /path/to/prompt-saver-mcp/mcp.json.template ~/.cursor/mcp.json
    - Replace `username` and `password` with your actual credentials
    - Keep the `@` and everything after it
 
-4. **`your_voyage_ai_api_key_here`** → Your Voyage AI API key from Step 3.1
+4. **`your_voyage_ai_api_key_here`** → Voyage AI API key
+   - **Shared setup:** Get from your team lead (shared key)
+   - **Individual setup:** Your own Voyage AI API key from Step 3
 
-5. **`your_openai_api_key_here`** → Your OpenAI API key from Step 3.2
+5. **`your_openai_api_key_here`** → OpenAI API key
+   - **Shared setup:** Get from your team lead (shared key)
+   - **Individual setup:** Your own OpenAI API key from Step 3
 
 ### 6.4 Example Configuration
 
@@ -432,10 +516,13 @@ Once your setup is working:
 ## Team Best Practices
 
 1. **Use consistent server names** - Agree on a naming convention (e.g., `prompt-saver-team`)
-2. **Share MongoDB credentials securely** - Use a password manager or secure channel
+2. **Share credentials securely** - Use a password manager or secure channel for MongoDB and API keys
 3. **Document custom configurations** - If your team has specific requirements, document them
 4. **Test before committing** - Make sure changes work for everyone before pushing to main branch
 5. **Keep API keys private** - Never commit API keys to the repository
+6. **Monitor API usage** - If using shared keys, monitor usage to avoid hitting rate limits
+7. **Rotate keys periodically** - For shared keys, rotate every 3-6 months for security
+8. **Set usage expectations** - Agree on usage limits if sharing API keys to avoid conflicts
 
 ---
 
