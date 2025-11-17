@@ -68,9 +68,16 @@ Uses AI to automatically improve a prompt based on user feedback.
 ## Documentation
 
 - [Getting Started Guide](docs/GETTING_STARTED.md) - Step-by-step setup
+- **[Team Setup Guide](docs/TEAM_SETUP.md)** - **For teammates setting up MCP server in Cursor** ⭐
+- **[Team Setup Checklist](docs/TEAM_SETUP_CHECKLIST.md)** - Quick reference checklist
 - [Cursor Usage](docs/CURSOR_USAGE.md) - Using in Cursor with Python imports
 - [Natural Language Workflow](docs/CURSOR_NATURAL_LANGUAGE.md) - Natural language commands
-- [Quick Start](QUICK_START.md) - Quick reference checklist
+- [MCP-Only Workflow](docs/MCP_ONLY_WORKFLOW.md) - Using MCP tools directly
+
+**Quick Start for Teams:**
+1. Clone the repository
+2. Copy `mcp.json.template` to `~/.cursor/mcp.json` and fill in your values
+3. Follow [TEAM_SETUP_CHECKLIST.md](docs/TEAM_SETUP_CHECKLIST.md)
 
 ## Installation
 
